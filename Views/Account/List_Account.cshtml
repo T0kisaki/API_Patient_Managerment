@@ -1,0 +1,376 @@
+﻿@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+<div class="app-body">
+
+    <!-- Row starts -->
+    <div class="row gx-3">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header d-flex align-items-center justify-content-between">
+                    <h5 class="card-title">Doctors List</h5>
+                    <a href="@Url.Action("Add_Account", "Account") ">Add Account</a>
+                </div>
+                <div class="card-body">
+
+                    <!-- Table starts -->
+                    <div class="table-responsive">
+                        <table id="basicExample" class="table truncate m-0 align-middle">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Doctor Name</th>
+                                    <th>Designation</th>
+                                    <th class="text-center">Sun</th>
+                                    <th class="text-center">Mon</th>
+                                    <th class="text-center">Tue</th>
+                                    <th class="text-center">Wed</th>
+                                    <th class="text-center">Thu</th>
+                                    <th class="text-center">Fri</th>
+                                    <th class="text-center">Sat</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>#0008</td>
+                                    <td>
+                                        <img src="~/admin/images/user.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Allan Stuart
+                                    </td>
+                                    <td>Oncologist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">9AM-2PM</td>
+                                    <td class="text-center">9AM-2PM</td>
+                                    <td class="text-center">9AM-2PM</td>
+                                    <td class="text-center">9AM-2PM</td>
+                                    <td class="text-center">9AM-2PM</td>
+                                    <td class="text-center">9AM-2PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="Add_Doctor" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="Profile_Doctor" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0021</td>
+                                    <td>
+                                        <img src="~/admin/images/user1.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Smith White
+                                    </td>
+                                    <td>Neurology</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">3PM-5PM</td>
+                                    <td class="text-center">3PM-5PM</td>
+                                    <td class="text-center">3PM-5PM</td>
+                                    <td class="text-center">3PM-5PM</td>
+                                    <td class="text-center">3PM-5PM</td>
+                                    <td class="text-center">3PM-5PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0026</td>
+                                    <td>
+                                        <img src="~/admin/images/user2.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Gilbert Sandoval
+                                    </td>
+                                    <td>Cardiologist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">5PM-9PM</td>
+                                    <td class="text-center">5PM-9PM</td>
+                                    <td class="text-center">5PM-9PM</td>
+                                    <td class="text-center">5PM-9PM</td>
+                                    <td class="text-center">5PM-9PM</td>
+                                    <td class="text-center">5PM-9PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0039</td>
+                                    <td>
+                                        <img src="~/admin/images/user3.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Bernardo James
+                                    </td>
+                                    <td>Clinical Doctor</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">7AM-9AM</td>
+                                    <td class="text-center">7AM-9AM</td>
+                                    <td class="text-center">7AM-9AM</td>
+                                    <td class="text-center">7AM-9AM</td>
+                                    <td class="text-center">7AM-9AM</td>
+                                    <td class="text-center">7AM-9AM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0044</td>
+                                    <td>
+                                        <img src="~/admin/images/user4.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Ronald Sullivan
+                                    </td>
+                                    <td>Radiologist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">3PM-9PM</td>
+                                    <td class="text-center">3PM-9PM</td>
+                                    <td class="text-center">3PM-9PM</td>
+                                    <td class="text-center">3PM-9PM</td>
+                                    <td class="text-center">3PM-9PM</td>
+                                    <td class="text-center">3PM-9PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0083</td>
+                                    <td>
+                                        <img src="~/admin/images/user5.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Amelia Bruklin
+                                    </td>
+                                    <td>Neurologist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">6PM-8PM</td>
+                                    <td class="text-center">6PM-8PM</td>
+                                    <td class="text-center">6PM-8PM</td>
+                                    <td class="text-center">6PM-8PM</td>
+                                    <td class="text-center">6PM-8PM</td>
+                                    <td class="text-center">6PM-8PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0067</td>
+                                    <td>
+                                        <img src="~/admin/images/user2.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Bshton Cozei
+                                    </td>
+                                    <td>Pediatrics</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">4PM-7PM</td>
+                                    <td class="text-center">4PM-7PM</td>
+                                    <td class="text-center">4PM-7PM</td>
+                                    <td class="text-center">4PM-7PM</td>
+                                    <td class="text-center">4PM-7PM</td>
+                                    <td class="text-center">4PM-7PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0048</td>
+                                    <td>
+                                        <img src="~/admin/images/user3.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        George Bailey
+                                    </td>
+                                    <td>Pediatrics</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0058</td>
+                                    <td>
+                                        <img src="~/admin/images/user4.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Andrea Lalema
+                                    </td>
+                                    <td>Dentist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">8AM-4PM</td>
+                                    <td class="text-center">8AM-4PM</td>
+                                    <td class="text-center">8AM-4PM</td>
+                                    <td class="text-center">8AM-4PM</td>
+                                    <td class="text-center">8AM-4PM</td>
+                                    <td class="text-center">8AM-4PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0047</td>
+                                    <td>
+                                        <img src="~/admin/images/user3.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Taylor Melon
+                                    </td>
+                                    <td>Therapist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">9AM-3PM</td>
+                                    <td class="text-center">9AM-3PM</td>
+                                    <td class="text-center">9AM-3PM</td>
+                                    <td class="text-center">9AM-3PM</td>
+                                    <td class="text-center">9AM-3PM</td>
+                                    <td class="text-center">9AM-3PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>#0082</td>
+                                    <td>
+                                        <img src="~/admin/images/user.png" class="img-shadow img-2x rounded-5 me-1" alt="Medical Admin Template">
+                                        Meera Gill
+                                    </td>
+                                    <td>Gynecologist</td>
+                                    <td class="text-center text-danger">NA</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td class="text-center">5PM-8PM</td>
+                                    <td>
+                                        <div class="d-inline-flex gap-1">
+                                            <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <i class="ri-delete-bin-line"></i>
+                                            </button>
+                                            <a href="add" class="btn btn-outline-success btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Edit Doctor Details">
+                                                <i class="ri-edit-box-line"></i>
+                                            </a>
+                                            <a href="profile" class="btn btn-outline-info btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="View Profile">
+                                                <i class="ri-eye-line"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Table ends -->
+                    <!-- Modal Delete Row -->
+                    <div class="modal fade" id="delRow" tabindex="-1" aria-labelledby="delRowLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="delRowLabel">
+                                        Confirm
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    Are you sure you want to delete the doctor from list?
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="d-flex justify-content-end gap-2">
+                                        <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">No</button>
+                                        <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Yes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row ends -->
+
+</div>
