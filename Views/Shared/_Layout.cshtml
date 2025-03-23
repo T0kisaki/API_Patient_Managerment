@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -93,11 +94,37 @@
                 </div>
                 <a href="contact.html" class="nav-item nav-link">Contact</a>
             </div>
-            <div class="auth-buttons px-4">
-                <a href="Author/Login">Login</a>
-                / 
-                <a href="Author/Register">Register</a>
-                
+            <div class="relative">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <button class="btn-avatar rounded-full overflow-hidden w-12 h-12">
+                        <img src="/data/images/614b64d5-92c4-4b48-ae4c-29e33255f953.jpg" alt="avatar" class="w-full h-full object-cover">
+                    </button>
+                    <div class="dropdown-menu">
+                        <div class="p-4">
+                            <a class="text-xs text-gray-600">Hello, @User.Identity.Name</a>
+                        </div>
+                        <div class="border-t my-2"></div>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a class="nav-link" href="Admin/Home">
+                                <i class="fa fa-cogs"></i> Admin Setting
+                            </a>
+                        }
+                        <a class="block px-4 py-2 text-sm" asp-controller="Users" asp-action="Details" asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
+                            Settings
+                        </a>
+                        <div class="border-t my-2"></div>
+                        <a class="block px-4 py-2 text-sm text-red-600" href="Author/Logout">Log Out</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="auth-buttons px-4">
+                        <a href="Author/Login">Login</a>
+                        <a href="Author/Register">Register</a>
+                    </div>
+                }
             </div>
             <a href="Doctor/List_Doctor" class="nav-item nav-link">admin</a>
         </div>

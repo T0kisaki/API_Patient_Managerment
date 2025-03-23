@@ -1,10 +1,15 @@
+using API_Patient_Managerment.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Net.Sockets;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
+builder.Services.AddSingleton<IConsumeApi, ConsumeApi>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
 {
     options.Cookie = new CookieBuilder
@@ -21,7 +26,15 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
     options.SlidingExpiration = true;
 });
-
+builder.Services.AddSession(options =>
+{
+    //options.Cookie.Domain = "domain"; //Releases in active
+    options.IdleTimeout = TimeSpan.FromMinutes(60);
+    options.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Lax;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.Cookie.IsEssential = true;
+    options.Cookie.HttpOnly = true;
+});
 
 var app = builder.Build();
 
@@ -35,7 +48,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseSession();
 app.UseRouting();
 
 app.UseAuthorization();
