@@ -29,14 +29,12 @@
                     <h2>Login</h2>
                     <form asp-action = "Logins">
                         <p>
-                            <label>Username or email address<span>*</span></label>
-                            <label asp-for="@Model.UserName" class="form-label my-3"></label><sup>*</sup>
+                            <label asp-for="@Model.UserName" class="form-label my-3"></label>
                             <input asp-for="@Model.UserName" class="form-control">
                             <span asp-validation-for="@Model.UserName" class="text-danger"></span>
                         </p>
                         <p>
-                            <label>Password<span>*</span></label>
-                            <label asp-for="@Model.Password" class="form-label my-3"></label><sup>*</sup>
+                            <label asp-for="@Model.Password" class="form-label my-3"></label>
                             <input asp-for="@Model.Password" class="form-control">
                             <span asp-validation-for="@Model.Password" class="text-danger"></span>
                         </p>

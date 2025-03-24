@@ -97,34 +97,36 @@
             <div class="relative">
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <button class="btn-avatar rounded-full overflow-hidden w-12 h-12">
-                        <img src="/data/images/614b64d5-92c4-4b48-ae4c-29e33255f953.jpg" alt="avatar" class="w-full h-full object-cover">
-                    </button>
-                    <div class="dropdown-menu">
-                        <div class="p-4">
-                            <a class="text-xs text-gray-600">Hello, @User.Identity.Name</a>
-                        </div>
-                        <div class="border-t my-2"></div>
-                        @if (User.IsInRole("Admin"))
-                        {
-                            <a class="nav-link" href="Admin/Home">
-                                <i class="fa fa-cogs"></i> Admin Setting
-                            </a>
-                        }
-                        <a class="block px-4 py-2 text-sm" asp-controller="Users" asp-action="Details" asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
-                            Settings
-                        </a>
-                        <div class="border-t my-2"></div>
-                        <a class="block px-4 py-2 text-sm text-red-600" href="Author/Logout">Log Out</a>
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="/data/images/614b64d5-92c4-4b48-ae4c-29e33255f953.jpg" alt="avatar" class="rounded-circle me-2" style="width: 40px; height: 40px; object-fit: cover;">
+                            <span class="d-none d-md-inline">@User.Identity.Name</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li><span class="dropdown-item-text text-muted">Hello, @User.Identity.Name</span></li>
+                            <li><hr class="dropdown-divider"></li>
+@*                             @if (User.IsInRole("Admin"))
+                            { *@
+                                <li><a class="dropdown-item" href=""><i class="fa fa-cogs me-2"></i>Admin Setting</a></li>
+@*                             } *@
+                            <li>
+                                <a class="dropdown-item" asp-controller="Users" asp-action="Details" asp-route-id="@User.FindFirst(ClaimTypes.NameIdentifier)?.Value">
+                                    <i class="fa fa-user-cog me-2"></i>Settings
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-danger" href="/Author/Logout"><i class="fa fa-sign-out-alt me-2"></i>Log Out</a></li>
+                        </ul>
                     </div>
                 }
                 else
                 {
-                    <div class="auth-buttons px-4">
-                        <a href="Author/Login">Login</a>
-                        <a href="Author/Register">Register</a>
+                    <div class="d-flex gap-2">
+                        <a href="/Author/Login" class="btn btn-outline-primary">Login</a>
+                        <a href="/Author/Register" class="btn btn-primary">Register</a>
                     </div>
                 }
+
             </div>
             <a href="Doctor/List_Doctor" class="nav-item nav-link">admin</a>
         </div>
