@@ -1,0 +1,91 @@
+﻿@model API_Patient_Managerment.Models.PatientDTO
+@{
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<div class="app-body">
+    <!-- Row starts -->
+    <div class="row gx-3">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">Add Patient Details</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Form Create Patient -->
+<form method="post" asp-controller="Patient" asp-action="Create">
+                        <div class="row gx-3">
+                            <!-- First Name -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="firstName">First Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" required />
+                                </div>
+                            </div>
+                            <!-- Last Name -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="lastName">Last Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name" required />
+                                </div>
+                            </div>
+                            <!-- Gender -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Gender <span class="text-danger">*</span></label>
+                                    <div class="m-0">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderMale" value="Male" checked="checked" />
+                                            <label class="form-check-label" for="genderMale">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="Female" />
+                                            <label class="form-check-label" for="genderFemale">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Email -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="email">Email <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required />
+                                </div>
+                            </div>
+                            <!-- Mobile Number -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="phone">Mobile Number <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Mobile Number" required />
+                                </div>
+                            </div>
+                            <!-- Address -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="address">Address</label>
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" />
+                                </div>
+                            </div>
+                            <!-- Marked as Deleted (checkbox) -->
+                            <div class="col-xxl-3 col-lg-4 col-sm-6">
+                                <div class="mb-3 form-check">
+                                    <input class="form-check-input" type="checkbox" id="deleted" name="deleted">
+                                    <label class="form-check-label" for="deleted">Marked as Deleted</label>
+                                </div>
+                            </div>
+                            <!-- Action Buttons -->
+                            <div class="col-sm-12">
+                                <div class="d-flex gap-2 justify-content-end">
+                                    <a href="/Patient/Index" class="btn btn-outline-secondary">Cancel</a>
+                                    <button type="submit" class="btn btn-primary">Create</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row ends -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Row ends -->
+</div>

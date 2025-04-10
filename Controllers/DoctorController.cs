@@ -126,7 +126,7 @@ namespace API_Patient_Managerment.Controllers
             else
             {
                 // Chú ý: thêm ID vào URL
-                response = await _client.PutAsJsonAsync($"/api/doctor/edit/{model._id}", postModel);
+                response = await _client.PatchAsJsonAsync($"/api/doctor/edit/{model._id}", postModel);
             }
 
             if (!response.IsSuccessStatusCode)
