@@ -18,7 +18,7 @@ namespace API_Patient_Managerment.Controllers
         public async Task<IActionResult> Index()
         {
             List<PatientDTO> data = new List<PatientDTO>();
-            HttpResponseMessage response = await _client.GetAsync("/api/patient/getlist?page=1&limit=8");
+            HttpResponseMessage response = await _client.GetAsync("/api/patient/getlist?page=1&limit=100");
 
             if (response.IsSuccessStatusCode)
             {
@@ -90,27 +90,46 @@ namespace API_Patient_Managerment.Controllers
                 return View(updatedPatient);
             }
         }
-        [HttpPost]
-        public async Task<IActionResult> Delete(string id)
+        [HttpGet]
+        public IActionResult Create()
         {
-            if (string.IsNullOrEmpty(id))
-            {
-                TempData["ErrorMessage"] = "Invalid patient id.";
-                return RedirectToAction("Index");
-            }
-
-            // Gọi API để xóa bệnh nhân
-            HttpResponseMessage response = await _client.DeleteAsync($"/api/patient/delete/{id}");
-            if (response.IsSuccessStatusCode)
-            {
-                TempData["SuccessMessage"] = "Patient deleted successfully!";
-            }
-            else
-            {
-                TempData["ErrorMessage"] = "Failed to delete patient!";
-            }
-
-            return RedirectToAction("Index");
+            return View(new PatientDTO());
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(PatientDTO newPatient)
+        {
+            // Kiểm tra ModelState trước khi gửi dữ liệu
+            if (!ModelState.IsValid)
+            {
+                TempData["ErrorMessage"] = "Invalid data submitted.";
+                return View(newPatient);
+            }
+
+            try
+            {
+                // Gửi request POST đến API NodeJS để tạo mới patient
+                HttpResponseMessage response = await _client.PostAsJsonAsync("/api/patient/create", newPatient);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["SuccessMessage"] = "Patient created successfully!";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    // Đọc lỗi từ API để debug
+                    string errorContent = await response.Content.ReadAsStringAsync();
+                    TempData["ErrorMessage"] = $"Failed to create patient. Error: {errorContent}";
+                    return View(newPatient);
+                }
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = "Exception occurred: " + ex.Message;
+                return View(newPatient);
+            }
+        }
+
     }
 }
