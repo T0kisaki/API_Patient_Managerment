@@ -16,6 +16,7 @@ namespace API_Patient_Managerment.Controllers
         }
 
         // Lấy danh sách bác sĩ
+        [HttpGet]
         private async Task<List<DoctorDTO>> GetDoctorList()
         {
             List<DoctorDTO> doclist = new List<DoctorDTO>();
@@ -35,6 +36,7 @@ namespace API_Patient_Managerment.Controllers
         }
 
         // Lấy bác sĩ theo ID
+        [HttpGet]
         private async Task<DoctorDTO?> GetDocById(string id)
         {
             using (var response = await _client.GetAsync($"/api/doctor/getById/{id}"))
@@ -49,6 +51,7 @@ namespace API_Patient_Managerment.Controllers
         }
 
         // Danh sách bác sĩ
+        [HttpGet]
         public async Task<IActionResult> List_Doctor()
         {
             var doclist = await GetDoctorList();
@@ -86,16 +89,44 @@ namespace API_Patient_Managerment.Controllers
                 return View(model);
             }
 
-            bool isCreate = string.IsNullOrEmpty(model._id);
+            // Xử lý lưu ảnh (nếu có)
+            if (model.image != null && model.image.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(model.image.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/doctors", fileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await model.image.CopyToAsync(stream);
+                }
+
+                model.imagePath = "/images/doctors/" + fileName;
+            }
+
+            // Tạo model gửi API
+            var postModel = new
+            {
+                firstname = model.firstname,
+                lastname = model.lastname,
+                dob = model.dob,
+                specialty = model.specialty,
+                phone = model.phone,
+                email = model.email,
+                address = model.address,
+                avatar = model.imagePath
+            };
+
             HttpResponseMessage response;
+            bool isCreate = string.IsNullOrEmpty(model._id);
 
             if (isCreate)
             {
-                response = await _client.PostAsJsonAsync("/api/doctor/create", model);
+                response = await _client.PostAsJsonAsync("/api/doctor/create", postModel);
             }
             else
             {
-                response = await _client.PutAsJsonAsync("/api/doctor/edit", model);
+                // Chú ý: thêm ID vào URL
+                response = await _client.PutAsJsonAsync($"/api/doctor/edit/{model._id}", postModel);
             }
 
             if (!response.IsSuccessStatusCode)
@@ -108,5 +139,6 @@ namespace API_Patient_Managerment.Controllers
             TempData["SuccessMessage"] = isCreate ? "Doctor created successfully!" : "Doctor updated successfully!";
             return RedirectToAction("List_Doctor");
         }
+
     }
 }
