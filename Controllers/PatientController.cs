@@ -90,6 +90,27 @@ namespace API_Patient_Managerment.Controllers
                 return View(updatedPatient);
             }
         }
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                TempData["ErrorMessage"] = "Invalid patient id.";
+                return RedirectToAction("Index");
+            }
 
+            // Gọi API để xóa bệnh nhân
+            HttpResponseMessage response = await _client.DeleteAsync($"/api/patient/delete/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["SuccessMessage"] = "Patient deleted successfully!";
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to delete patient!";
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
