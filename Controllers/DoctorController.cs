@@ -106,8 +106,8 @@ namespace API_Patient_Managerment.Controllers
             // Tạo model gửi API
             var postModel = new
             {
-                firstname = model.firstname,
-                lastname = model.lastname,
+                firstName = model.firstname,
+                lastName = model.lastname,
                 dob = model.dob,
                 specialty = model.specialty,
                 phone = model.phone,
@@ -126,7 +126,7 @@ namespace API_Patient_Managerment.Controllers
             else
             {
                 // Chú ý: thêm ID vào URL
-                response = await _client.PutAsJsonAsync($"/api/doctor/edit/{model._id}", postModel);
+                response = await _client.PatchAsJsonAsync($"/api/doctor/edit/{model._id}", postModel);
             }
 
             if (!response.IsSuccessStatusCode)
