@@ -9,6 +9,7 @@ public partial class DoctorDTO
     public string lastname { get; set; } = string.Empty;
     public string email { get; set; } = string.Empty;
     public DateTime dob { get; set; }
+    [JsonProperty("specialty_id")]
     public string specialty { get; set; } = string.Empty;
     public string phone { get; set; }
     public string address { get; set; }
