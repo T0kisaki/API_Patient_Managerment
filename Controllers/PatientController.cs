@@ -146,6 +146,34 @@ namespace API_Patient_Managerment.Controllers
                 return View(newPatient);
             }
         }
+        // GET: Patient/Edit/{id}
+        [HttpGet]
+        public async Task<IActionResult> Dashboard(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                TempData["ErrorMessage"] = "Invalid patient id.";
+                return RedirectToAction("Index");
+            }
+
+            HttpResponseMessage response = await _client.GetAsync($"/api/patient/getbyid/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var patient = await response.Content.ReadFromJsonAsync<PatientDTO>();
+                if (patient != null)
+                    return View(patient);
+                else
+                {
+                    TempData["ErrorMessage"] = "Patient not found.";
+                    return RedirectToAction("Index");
+                }
+            }
+            else
+            {
+                TempData["ErrorMessage"] = "Failed to retrieve patient details!";
+                return RedirectToAction("Index");
+            }
+        }
     }
 
 }

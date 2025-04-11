@@ -30,12 +30,10 @@
                             {
                                 foreach (var patient in Model)
                                 {
-                                    // Decide on gender badge class based on the gender field.
                                     var genderClass = patient.gender?.ToLower() == "female" ? "bg-warning-subtle text-warning" : "bg-info-subtle text-info";
                                     <tr>
                                         <td>@patient._id</td>
                                         <td>
-                                            <!-- Using a default image; replace with patient-specific image if available -->
                                             <img src="assets/images/patient.png" class="img-shadow img-2x rounded-5 me-1" alt="Patient Image">
                                             @patient.firstName @patient.lastName
                                         </td>
@@ -44,14 +42,13 @@
                                                 @patient.gender
                                             </span>
                                         </td>
-                                        <!-- Age, Blood Group, and Treatment are not provided by PatientDTO so use placeholders or leave blank -->
                                         <td>@patient.phone</td>
                                         <td>@patient.email</td>
                                         <td>@patient.address</td>
                                         <td>
                                             <div class="d-inline-flex gap-1">
-                                                <!-- Delete action triggers modal confirmation -->
-                                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow">
+                                                <!-- Delete action, thêm data-id -->
+                                                <button class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#delRow" data-id="@patient._id">
                                                     <i class="ri-delete-bin-line"></i>
                                                 </button>
                                                 <!-- Edit Patient Details -->
@@ -91,13 +88,46 @@
                             <div class="modal-footer">
                                 <div class="d-flex justify-content-end gap-2">
                                     <button class="btn btn-outline-secondary" data-bs-dismiss="modal" aria-label="Close">No</button>
-                                    <button class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Yes</button>
+                                    <!-- Thêm id cho nút Yes -->
+                                    <button id="confirmDelete" class="btn btn-danger" data-bs-dismiss="modal" aria-label="Close">Yes</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- End Modal Delete Row -->
             </div> <!-- end card-body -->
         </div> <!-- end card -->
     </div> <!-- end col-sm-12 -->
 </div>
+
+@section Scripts {
+    <script>
+
+        // Biến lưu _id của patient cần chuyển deleted = true
+        var deletePatientId = "";
+
+        // Khi modal được hiển thị, lấy data-id từ nút trigger
+        $('#delRow').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // nút được ấn
+            deletePatientId = button.data('id');
+        });
+
+        // Khi người dùng ấn nút Yes để xác nhận xóa
+        $('#confirmDelete').on('click', function () {
+            $.ajax({
+                url: 'https://patient-records-management-api.up.railway.app/api/patient/delete/' + deletePatientId,
+                type: 'PATCH', // Phương thức PATCH để cập nhật deleted = true
+                contentType: 'application/json',
+                data: JSON.stringify({ deleted: true }),
+                success: function (result) {
+                    // Nếu thành công, tải lại trang để cập nhật danh sách
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    alert('Failed to delete patient: ' + error);
+                }
+            });
+        });
+    </script>
+}
