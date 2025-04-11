@@ -6,7 +6,7 @@ namespace API_Patient_Managerment.Controllers
 {
     public class DoctorController : Controller
     {
-        Uri baseAddress = new Uri("https://patient-records-management-api.vercel.app");
+        Uri baseAddress = new Uri("https://patient-records-management-api.up.railway.app");
         private readonly HttpClient _client;
 
         public DoctorController()
