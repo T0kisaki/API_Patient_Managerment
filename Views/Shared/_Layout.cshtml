@@ -128,7 +128,10 @@
                 }
 
             </div>
-            <a href="@Url.Action("List_Doctor", "Doctor")" class="nav-item nav-link">admin</a>
+            @if (User?.Identity?.IsAuthenticated ?? false)
+            {
+                <a href="@Url.Action("List_Doctor", "Doctor")" class="nav-item nav-link">admin</a>
+            }
         </div>
     </nav>
     <!-- Navbar End -->
